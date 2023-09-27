@@ -1,4 +1,4 @@
-package com.stationary.store.log;
+package com.stationary.store.filter;
 
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
@@ -52,7 +52,9 @@ public class LoggingFilter extends OncePerRequestFilter {
         
         String responseBody = getStringValue(responseWrapper.getContentAsByteArray(),
                 response.getCharacterEncoding());
-
+        response.addHeader("Access-Control-Allow-Origin", "*");
+        response.addHeader("Access-Control-Allow-Methods", "POST, GET, PUT");
+        response.addHeader("Access-Control-Allow-Headers", "Content-Type");
         LOGGER.info(
                 "FINISHED PROCESSING : TraceId={}; METHOD={}; REQUESTURI={}; REQUEST PAYLOAD={}; RESPONSE CODE={}; RESPONSE={}; TIM TAKEN={}",
                 ThreadContext.get("traceid"), request.getMethod(), request.getRequestURI(), requestBody, response.getStatus(), responseBody,
