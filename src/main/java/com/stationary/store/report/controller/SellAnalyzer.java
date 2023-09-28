@@ -4,8 +4,10 @@ import org.springframework.http.ResponseEntity;
 
 import com.stationary.store.report.model.Item;
 
-public interface HighestSellingItem {
+public interface SellAnalyzer {
 	
 	ResponseEntity<Item> getHighestSellingItem(String date);
+	
+	ResponseEntity<Item> getHighestProfitItem(String date);
 
 }
